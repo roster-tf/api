@@ -13,27 +13,27 @@ Most of Roster's functionality will be accessed via an API. This should allow mu
 One of the features of Roster will be the ability for anyone to organise a league or tournament series (may require approval). These can consist of group stages, before quarter- and semi-finals, or simply be a straightforward round robin. League matches will be organised automatically for participating teams.
 
 * __/leagues__: POST creates a new league.
-* __/leagues/<id>__: GET will return league information, such as current stage, skill level, start/finish dates. PUT will allow altering league settings. DELETE cancels the league.
-* __/leagues/<id>/teams__: GET will return the teams participating in the league. League organisers can POST to enter a team for participation and DELETE to remove them.
-* __/leagues/<id>/matches__: GET will return league matches that have been played or organised. POST will allow league organisers to manually create matches.
+* __/leagues/:id:__: GET will return league information, such as current stage, skill level, start/finish dates. PUT will allow altering league settings. DELETE cancels the league.
+* __/leagues/:id:/teams__: GET will return the teams participating in the league. League organisers can POST to enter a team for participation and DELETE to remove them.
+* __/leagues/:id:/matches__: GET will return league matches that have been played or organised. POST will allow league organisers to manually create matches.
 
 ## Teams
 * __/teams__: POST to create a new team. 
-* __/teams/<id>__: GET will return team information. PUT will update basic team information such as name (provided you are a team leader). DELETE disbands the team (provided you are the team's creator). 
-* __/teams/<id>/players__: GET will return players on the team. Team leaders can POST to add new players or DELETE to remove current players.
-* __/teams/<id>/matches__: GET will return a list of matches for the team, with filtering options. Team leaders can POST to schedule new scrims for that team. Times and dates should be in GMT.
+* __/teams/:id:__: GET will return team information. PUT will update basic team information such as name (provided you are a team leader). DELETE disbands the team (provided you are the team's creator). 
+* __/teams/:id:/players__: GET will return players on the team. Team leaders can POST to add new players or DELETE to remove current players.
+* __/teams/:id:/matches__: GET will return a list of matches for the team, with filtering options. Team leaders can POST to schedule new scrims for that team. Times and dates should be in GMT.
 
 ## Matches
 Roster tries to make organising and playing matches as pain-free as possible. Using the [serveme.tf](https://serveme.tf) API, Roster will create a server, set up the map and league rules and keep track of players (no need to check someone is who they say they are.) Roster will also create a private mumble server for the duration of the match. Of course, team leaders can specify their own servers.
 
 * __/matches__: GET will return all matches, with filtering options.
-* __/matches/<id>__: GET will return match information such as teams, map, date and logs (if completed). PUT will allow league organisers to change match status (e.g. in disputes) or DELETE the match. For non-league scrims, team leaders (of the initiating team) can change map or date (if an opposing team hasn't been found) with PUT or cancel the scrim with DELETE. POST will be used for match-altering changes such as joining the game as opposing team or requesting/allowing/denying mercs.
+* __/matches/:id:__: GET will return match information such as teams, map, date and logs (if completed). PUT will allow league organisers to change match status (e.g. in disputes) or DELETE the match. For non-league scrims, team leaders (of the initiating team) can change map or date (if an opposing team hasn't been found) with PUT or cancel the scrim with DELETE. POST will be used for match-altering changes such as joining the game as opposing team or requesting/allowing/denying mercs.
 
 ## Players
 * __/players__: GET will return a list of all players, with filtering options (for mercs, class, skill level etc.)
-* __/players/<id>__: GET will return that player's information. _id_ can be a Steam ID. PUT will allow players to update their own information.
-* __/players/<id>/teams__: GET will fetch all teams (past and present) the player was enrolled in (filterable).
-* __/players/<id>/matches__: GET will fetch all matches the player was involved in as a team player or merc (filterable).
+* __/players/:id:__: GET will return that player's information. _id_ can be a Steam ID. PUT will allow players to update their own information.
+* __/players/:id:/teams__: GET will fetch all teams (past and present) the player was enrolled in (filterable).
+* __/players/:id:/matches__: GET will fetch all matches the player was involved in as a team player or merc (filterable).
 
 
 # Match Lifecycle
